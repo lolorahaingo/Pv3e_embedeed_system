@@ -1,0 +1,30 @@
+{
+  "name": "pv3e-plotter",
+  "version": "0.1.1",
+  "description": "Live plotting of calypso telemetry data",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raymas/Embedded-Systems.git"
+  },
+  "keywords": [
+    "pv3e",
+    "siera",
+    "embedded",
+    "systems",
+    "calypso"
+  ],
+  "author": "Raymas",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^3.0.5",
+    "electron-rebuild": "^1.8.4"
+  },
+  "dependencies": {
+    "serialport": "^7.1.4"
+  }
+}

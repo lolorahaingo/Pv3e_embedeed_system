@@ -1,0 +1,34 @@
+#!/bin/bash
+
+INSTALL_LOC="/usr/local/cloud9/PV3e"
+
+# Check for rabbit
+if [ ! -f "/etc/apt/sources.list.d/bintray.rabbitmq.list" ]
+then
+    curl -fsSL https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc | apt-key add -
+    apt-key adv --keyserver "hkps://keys.openpgp.org" --recv-keys "0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
+    echo "deb https://dl.bintray.com/rabbitmq/debian stretch main" | tee /etc/apt/sources.list.d/bintray.rabbitmq.list
+fi
+
+RABBITMQ=$(dpkg -s rabbitmq-server)
+if [ $RABBITMQ == "" ]
+then
+    apt-get update -y
+    apt-get install rabbitmq-server -y --fix-missing
+fi
+
+apt-get update -y
+
+# Install some python dependencies
+apt-get install python3-scipy python3-pip python3-yaml python3-numpy python3-serial
+pip3 install -U -r ${INSTALL_LOC}/requirements.txt
+
+# Install other dependencies
+apt-get install nodejs npm
+cd ${INSTALL_LOC} && npm install
+
+# Start service
+mv ${INSTALL_LOC}/embedded-systems.service /etc/systemd/system/
+systemctl enable embedded-systems.service
+
+systemctl start embedded-systems.service

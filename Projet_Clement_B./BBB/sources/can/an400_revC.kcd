@@ -1,0 +1,180 @@
+<NetworkDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Definition.xsd" version="0.3">
+	<Document name="Calypso AN400REVC" version="1.23" author="Raymas" company="Performance Electronics" date="2019-01-08">
+    PV3e can AN400_rev C by performance electronics
+	</Document> 
+	
+	<Node id="1" name="Motor"/>
+    
+	<Bus name="Motor">
+	
+	    <!-- PE1 -->
+		 <Message id="0x0CFFF048" name="PE1">
+		    <Notes>PE1</Notes>
+		    
+		 	<Producer>
+		 		<NodeRef id="1"/>
+		 	</Producer>
+		 	
+		 	<Signal name="RPM" offset="0" length="16" endianess="little">
+		 	    <Value type="unsigned" slope="1" intercept="0" unit="rpm"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="30000"/>
+                </LabelSet>	     			
+            </Signal>	
+            
+		 	<Signal name="TPS" offset="16" length="16">
+		 	    <Value type="signed" slope="0.1" intercept="0" unit="%"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="100"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Fuel Open Time" offset="32" length="16">
+		 	    <Value type="signed" slope="0.1" intercept="0" unit="ms"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="30"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Ignition Angle" offset="48" length="16">
+		 	    <Value type="signed" slope="0.1" intercept="-20" unit="deg"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="-20" to="100"/>
+                </LabelSet>	     			
+            </Signal>		 	
+		 </Message>
+		 
+		 
+		 
+		
+	    <!-- PE2 -->
+		 <Message id="0x0CFFF148" name="PE2">
+		    <Notes>PE2</Notes>
+		    
+		 	<Producer>
+		 		<NodeRef id="1"/>
+		 	</Producer>
+		 	
+		 	<Signal name="Barometer" offset="0" length="16" endianess="little">
+		 	    <Value type="signed" slope="0.01" intercept="0" unit="psi"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="300"/>
+                </LabelSet>	     			
+            </Signal>	
+            
+		 	<Signal name="MAP" offset="16" length="16">
+		 	    <Value type="signed" slope="0.01" intercept="0" unit="psi"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="300"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Lambda" offset="32" length="8">
+		 	    <Value type="signed" slope="0.001" intercept="0" unit="lambda"/> <!-- slope is bad with AN400_C protocol pdf -->
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="10"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Pressure Type" offset="48" length="1">
+ 				<LabelSet>
+					<Label name="psi" value="0"/>
+					<Label name="kpa" value="1"/>
+				</LabelSet>
+            </Signal>		 	
+		 </Message>
+
+
+	    <!-- PE5 -->
+		 <Message id="0x0CFFF448" name="PE5">
+		    <Notes>PE5</Notes>
+		    
+		 	<Producer>
+		 		<NodeRef id="1"/>
+		 	</Producer>
+		 	
+		 	<Signal name="Frequency 1" offset="0" length="16" endianess="little">
+		 	    <Value type="signed" slope="0.02" intercept="0" unit="hz"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="6000"/>
+                </LabelSet>	     			
+            </Signal>	
+            
+		 	<Signal name="Frequency 2" offset="16" length="16">
+		 	    <Value type="signed" slope="0.02" intercept="0" unit="hz"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="6000"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Frequency 3" offset="32" length="16">
+		 	    <Value type="signed" slope="0.02" intercept="0" unit="hz"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="6000"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Frequency 4" offset="48" length="16">
+		 	    <Value type="signed" slope="0.02" intercept="0" unit="hz"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="6000"/>
+                </LabelSet>	     			
+            </Signal>		 	
+		 </Message>
+
+
+	    <!-- PE6 -->
+		 <Message id="0x0CFFF548" name="PE6">
+		    <Notes>PE6</Notes>
+		    
+		 	<Producer>
+		 		<NodeRef id="1"/>
+		 	</Producer>
+		 	
+		 	<Signal name="Battery level" offset="0" length="16" endianess="little">
+		 	    <Value type="signed" slope="0.01" intercept="0" unit="Volts"/>
+                <LabelSet>
+                    <Label name="init" value="14"/>
+                    <LabelGroup type="error" name="Sensor error" from="0" to="22"/>
+                </LabelSet>	     			
+            </Signal>	
+            
+		 	<Signal name="Air Temp" offset="16" length="16">
+		 	    <Value type="signed" slope="0.1" intercept="-1000" unit="C/F"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="-1000" to="1000"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Coolant Temp" offset="32" length="16">
+		 	    <Value type="signed" slope="0.1" intercept="0" unit="C/F"/>
+                <LabelSet>
+                    <Label name="init" value="0"/>
+                    <LabelGroup type="error" name="Sensor error" from="-1000" to="1000"/>
+                </LabelSet>	     			
+            </Signal>
+            
+		 	<Signal name="Temp Type" offset="48" length="1">
+ 				<LabelSet>
+					<Label name="F" value="0"/>
+					<Label name="C" value="1"/>
+				</LabelSet>    			
+            </Signal>		 	
+		 </Message>
+		 
+	</Bus>
+</NetworkDefinition>
+
+

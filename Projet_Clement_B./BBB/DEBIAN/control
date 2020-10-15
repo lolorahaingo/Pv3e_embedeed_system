@@ -1,0 +1,11 @@
+Package: PV3e-SE
+Version: 0.00004
+Section: custom
+Priority: optional
+Architecture: all
+Essential: no
+Installed-Size: 61000
+Maintainer: "raymas" <csyvl6@yandex.com>
+Build-Depends: apt-transport-https curl gnupg
+Description: All embedded systems required packages for BeagleBone Blue.
+Homepage: https://github.com/raymas/Embedded-Systems

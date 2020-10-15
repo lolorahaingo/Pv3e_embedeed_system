@@ -1,0 +1,13 @@
+[Unit]
+Description=PV3e embedded systems
+After=network.target
+
+[Service]
+Type=simple
+User=debian
+WorkingDirectory=/usr/local/cloud9/PV3e
+ExecStart=/usr/local/cloud9/PV3e/start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
